@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/caracteristicas/repositorio_verificacion.dart';
 import 'package:flutter_application_1/caracteristicas/verificacion/bloc.dart';
 import 'package:flutter_application_1/caracteristicas/vistas/VistaMostrandoSolicitudActualizacion.dart';
+import 'package:flutter_application_1/caracteristicas/vistas/nombre_confirmado.dart';
 import 'package:flutter_application_1/caracteristicas/vistas/vista_creandose.dart';
 import 'package:flutter_application_1/caracteristicas/vistas/vista_esperando_nombre.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -45,13 +46,15 @@ class Aplicacion extends StatelessWidget {
           }
 
           if (estado is SolicitandoNombre) {
-            return VistaSolicitandoNombre();
+            return const VistaSolicitandoNombre();
           }
 
           if (estado is MostrandoSolicitudActualizacion) {
             return const VistaMostrandoSolicitudActualizacion();
           }
-
+          if(estado is MostrandoNombreConfirmado){
+            return VistaNombreConfirmado(registro: estado.registroUsuario);
+          }
           return Center(
               child: Text('Si estas viendo esto algo salió mal, huye'));
         }),
